@@ -38,15 +38,15 @@ class GameOfLife (val world: Set[GameOfLife.Cell] = Set.empty, val width: Int = 
     new GameOfLife(newWorld.toSet, width, height)
   }
 
-  def getLiveNeighbours(cell: GameOfLife.Cell) : Seq[GameOfLife.Cell] = {
+  private def getLiveNeighbours(cell: GameOfLife.Cell) : Seq[GameOfLife.Cell] = {
     getNeighbours(cell).filter(world.contains(_))
   }
 
-  def getDeadNeighbours(cell: GameOfLife.Cell) : Seq[GameOfLife.Cell] = {
+  private def getDeadNeighbours(cell: GameOfLife.Cell) : Seq[GameOfLife.Cell] = {
     getNeighbours(cell).filter(! world.contains(_))
   }
 
-  def getNeighbours(cell: GameOfLife.Cell) : Seq[GameOfLife.Cell] = {
+  private def getNeighbours(cell: GameOfLife.Cell) : Seq[GameOfLife.Cell] = {
     val neighbours = new ListBuffer[GameOfLife.Cell]
 
     for ( i <- -1 to 1) {
