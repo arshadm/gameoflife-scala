@@ -4,6 +4,18 @@ import org.scalatest._
 
 class GameOfLifeSpec extends FlatSpec with Matchers {
 
+  "Setting x position cell status out of bounds" should "throw assertion error" in {
+    intercept[AssertionError] {
+      val gameOfLife = (new GameOfLife(width = 10, height = 10)).setCellStatus(10, 2, true)
+    }
+  }
+
+  "Setting y position cell status out of bounds" should "throw assertion error" in {
+    intercept[AssertionError] {
+      val gameOfLife = (new GameOfLife(width = 10, height = 10)).setCellStatus(2, 10, true)
+    }
+  }
+
   "Setting cell status to live" should "result in a live cell" in {
     val gameOfLife = new GameOfLife
     gameOfLife.getCellStatus(5, 5) should be (false)

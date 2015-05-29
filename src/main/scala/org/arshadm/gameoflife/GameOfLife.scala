@@ -10,9 +10,13 @@ object GameOfLife {
 class GameOfLife (val world: Set[GameOfLife.Cell] = Set.empty, val width: Int = 100, val height: Int = 100) {
   def getCellStatus(x: Int, y: Int): Boolean = world.contains((x, y))
 
-  def setCellStatus(x: Int, y: Int, status: Boolean): GameOfLife =
+  def setCellStatus(x: Int, y: Int, status: Boolean): GameOfLife = {
+    assert(x < width, s"x position must be between 0 and ${width-1}")
+    assert(y < height, s"y position must be between 0 and ${height-1}")
+
     if (status) new GameOfLife(world + ((x, y)), width, height)
     else new GameOfLife(world - ((x, y)), width, height)
+  }
 
   def next() = {
     val newWorld = new scala.collection.mutable.HashSet[GameOfLife.Cell]
