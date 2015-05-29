@@ -22,9 +22,7 @@ class GameOfLife (val world: Set[GameOfLife.Cell] = Set.empty, val width: Int = 
       val numberOfLiveNeighbours = getLiveNeighbours(cell).size
       deadCells ++= getDeadNeighbours(cell)
 
-      if (numberOfLiveNeighbours < 2 || numberOfLiveNeighbours > 3) {
-        /* Cell does not survive into next iteration */
-      } else if (numberOfLiveNeighbours == 2 || numberOfLiveNeighbours == 3) {
+      if (numberOfLiveNeighbours == 2 || numberOfLiveNeighbours == 3) {
         newWorld += cell
       }
     }
