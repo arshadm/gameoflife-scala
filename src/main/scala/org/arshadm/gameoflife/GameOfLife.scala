@@ -11,8 +11,8 @@ class GameOfLife (val world: Set[GameOfLife.Cell] = Set.empty, val width: Int = 
   def getCellStatus(x: Int, y: Int): Boolean = world.contains((x, y))
 
   def setCellStatus(x: Int, y: Int, status: Boolean): GameOfLife = {
-    assert(x < width, s"x position must be between 0 and ${width-1}")
-    assert(y < height, s"y position must be between 0 and ${height-1}")
+    assert(x >= 0 && x < width, s"x position must be between 0 and ${width-1}")
+    assert(y >= 0 && y < height, s"y position must be between 0 and ${height-1}")
 
     if (status) new GameOfLife(world + ((x, y)), width, height)
     else new GameOfLife(world - ((x, y)), width, height)
